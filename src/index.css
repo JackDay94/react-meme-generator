@@ -77,6 +77,8 @@ main {
 
 .meme span {
   position: absolute;
+  cursor: move;
+  user-select: none;
   text-align: center;
   margin-block: 15px;
   padding-inline: 5px;
@@ -97,12 +99,11 @@ main {
       2px 2px 5px #000;
 }
 
-.bottom {
-  bottom: 0;
-}
-
-.top {
-  top: 0;
+.hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
 }
 
 footer {
@@ -110,5 +111,4 @@ footer {
   justify-content: center;
   align-items: center;
   color: #475467;
-  padding: 20px 0;
 }
