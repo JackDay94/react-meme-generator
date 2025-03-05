@@ -1,33 +1,7 @@
 import { useState, useEffect } from "react";
-import { DndContext, useDraggable } from "@dnd-kit/core";
+import { DndContext } from "@dnd-kit/core";
 import { restrictToParentElement } from "@dnd-kit/modifiers";
-
-function Draggable({ children, id, position }) {
-  const { atrtributes, listeners, setNodeRef, transform } = useDraggable({
-    id: id,
-  });
-
-  const style = {
-    position: "absolute",
-    left: position.x,
-    top: position.y,
-    transform: transform
-      ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
-      : undefined,
-  };
-
-  return (
-    <span
-      ref={setNodeRef}
-      style={style}
-      {...listeners}
-      {...atrtributes}
-      className={id}
-    >
-      {children}
-    </span>
-  );
-}
+import DraggableText from "./DraggableText";
 
 export default function Main() {
   const [meme, setMeme] = useState({
@@ -86,6 +60,7 @@ export default function Main() {
             placeholder="One does not simply"
             onChange={handleChange}
             value={meme.topText}
+            maxLength={25}
           />
         </label>
 
@@ -97,6 +72,7 @@ export default function Main() {
             placeholder="Walk into Mordor"
             onChange={handleChange}
             value={meme.bottomText}
+            maxLength={25}
           />
         </label>
 
@@ -109,12 +85,12 @@ export default function Main() {
       >
         <div className="meme">
           <img src={meme.imageUrl} />
-          <Draggable id="top" position={positions.top}>
+          <DraggableText id="top" position={positions.top}>
             {meme.topText}
-          </Draggable>
-          <Draggable id="bottom" position={positions.bottom}>
+          </DraggableText>
+          <DraggableText id="bottom" position={positions.bottom}>
             {meme.bottomText}
-          </Draggable>
+          </DraggableText>
         </div>
       </DndContext>
       <small className="hint">Hint: Drag the text to reposition it</small>
