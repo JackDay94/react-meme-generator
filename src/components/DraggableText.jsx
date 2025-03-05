@@ -1,10 +1,12 @@
 import { useDraggable } from "@dnd-kit/core";
 
 export default function DraggableText({ children, id, position }) {
+  // Custom hook to make the text draggable
   const { atrtributes, listeners, setNodeRef, transform } = useDraggable({
     id: id,
   });
 
+  // Style object to position the text
   const style = {
     position: "absolute",
     left: position.x,
@@ -15,6 +17,7 @@ export default function DraggableText({ children, id, position }) {
   };
 
   return (
+    // Draggable text element
     <span
       ref={setNodeRef}
       style={style}
